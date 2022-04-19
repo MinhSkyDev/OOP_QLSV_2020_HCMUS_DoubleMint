@@ -27,8 +27,7 @@ public:
 	void deleteCourse(string course_name);
 	void updateCourse(string course_name_source, string course_name_destination);
 
-	//Input Output
-	friend istream& operator>>(istream& in, Student& a);
+	//Output
 	friend ostream& operator<<(ostream& out, Student& a);
 
 

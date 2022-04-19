@@ -25,8 +25,8 @@ public:
 	
 	
 	//input output
-	friend istream& operator>>(istream& in, Schedule& a);
-	friend ostream& operator<<(istream& out, Schedule a);
+	//Ko can istream vi ta se dang ky thong qua cac method addCourse
+	friend ostream& operator<<(ostream& out, Schedule& a);
 
 };
 

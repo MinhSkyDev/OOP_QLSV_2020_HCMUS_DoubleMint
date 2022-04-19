@@ -71,7 +71,7 @@ int Schedule::isStudentHaveCourse(const string & course_find) {
 void Schedule::addCourse(string course_name)
 {
 	//Kiem tra trong danh sach dang ky da co lop hoc nay chua 
-	if (isStudentHaveCourse(course_name) == -1)
+	if (isStudentHaveCourse(course_name) != -1)
 	{
 		cout << "Hoc sinh da dang ky lop nay roi, khong the dang ky them \n";
 		return;
@@ -82,13 +82,13 @@ void Schedule::addCourse(string course_name)
 		cout << "Sinh vien vuot qua so lop hoc quy dinh \n";
 		return;
 	}
-	string* courses_temp = new string[this->quantity];
+	string* courses_temp = new string[this->quantity+1];
 	for (int i = 0; i < this->quantity; i++)
 	{
 		courses_temp[i] = this->courses[i];
 	}
-
-	this->quantity++;
+	courses_temp[this->quantity] = course_name;
+	this->quantity++; 
 	delete[] this->courses;
 	this->courses = courses_temp;
 }
@@ -98,7 +98,7 @@ void Schedule::deleteCourse(string course_name) {
 	//Get the index of the removing element
 	int indexToRemove = isStudentHaveCourse(course_name);
 	//Check if the Course is not exist in the course list
-	if (indexToRemove != -1)
+	if (indexToRemove == -1)
 	{
 		cout << "Sinh vien khong dang ky lop hoc nay \n";
 		return;
@@ -135,4 +135,14 @@ void Schedule::updateCourse(string course_name_src, string course_name_dst)
 		return;
 	}
 	this->courses[indexToUpdate] = course_name_dst;
+}
+
+ostream& operator<<(ostream& out, Schedule& a)
+{
+	out << "\nDanh sach cac khoa hoc ma sinh vien nay tham gia la: \n";
+	for (int i = 0; i < a.quantity; i++)
+	{
+		out << "Khoa hoc thu " << i + 1 << " :" << a.courses[i] << endl;
+	}
+	return out;
 }

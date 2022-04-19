@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Courses.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Registar.cpp" />
     <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="Student.cpp" />
