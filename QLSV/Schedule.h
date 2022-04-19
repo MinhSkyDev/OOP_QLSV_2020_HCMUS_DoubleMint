@@ -13,13 +13,20 @@ public:
 	Schedule(Schedule& a);
 	void operator=(Schedule& a);
 
+	//Check if student has a specific Courses
+	//return the index, if index = -1 then the course is not exist
+	int isStudentHaveCourse(const string& course_find);
+
 	//CRUD
 	void addCourse(string course_name);
-	void updateCouse(string course_name);
 	void deleteCourse(string course_name);
-	void updateCourse(string course_name);
+	void updateCourse(string course_name_src, string course_name_dst);
 
+	
+	
 	//input output
+	friend istream& operator>>(istream& in, Schedule& a);
+	friend ostream& operator<<(istream& out, Schedule a);
 
 };
 

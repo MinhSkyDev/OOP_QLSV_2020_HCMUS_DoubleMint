@@ -7,7 +7,7 @@ class Student
 {
 private:
 	string name;
-	Schedule a;
+	Schedule schedule;
 public:
 	Student();
 	~Student();
@@ -16,7 +16,7 @@ public:
 
 	//Setter getter
 	void setName(const string& Name);
-	void setSchedule(const Schedule& a);
+	void setSchedule( Schedule& a);
 	string getName();
 	Schedule getSchedule();
 
