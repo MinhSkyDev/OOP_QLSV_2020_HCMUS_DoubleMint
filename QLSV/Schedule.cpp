@@ -39,13 +39,20 @@ void Schedule::operator=(Schedule& a) {
 	this->courses = courses_new;
 }
 
-string toUpperString(string input)
+string toUpperString(string inp)
 {
-	for (int i = 0; i < input.size(); i++)
-	{
-		input[i] = toupper(input[i]);
+	for (unsigned int i = 0; i < inp.size(); i++)
+		inp[i] = toupper(inp[i]);
+	while (inp[0] == ' ')
+		inp.erase(0, 1);
+	int j = 0;
+	while (j < inp.size() - 1) {
+		if (inp[j] == ' ' && inp[j + 1] == ' ')
+			inp.erase(j + 1, 1);
+		else
+			j++;
 	}
-	return input;
+	return inp;
 }
 
 int Schedule::isStudentHaveCourse(const string & course_find) {

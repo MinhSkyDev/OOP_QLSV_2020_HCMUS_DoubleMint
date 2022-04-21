@@ -4,7 +4,7 @@
 class Registar
 {
 private:
-	Student* student;
+	Student* students;
 	Courses* courses;
 public:
 
@@ -13,17 +13,23 @@ public:
 	Registar(Registar& a);
 	void operator=(Registar& a);
 
-	//Input SinhVien
-	void addOneStudent();
+	//Input SinhVien,Khoa Hoc
+	void addOneStudent(string name_input);
+	void addOneCourse(string name_input);
 
 	//CRUD Create Read Update Delete
-	void regSinhVien(Student& student, Courses& courses); // Dang ky SinhVien vao mot khoa hoc nao do
+	void regSinhVien(Student& student, Courses& course); // Dang ky SinhVien vao mot khoa hoc nao do
+	void regSinhVien(int student_index, int course_index);
 	void delCoursesFromStudent(Student& student, Courses del); // Xoa SinhVien khoi mot khoa hoc nao do
 	void printCoursesFromStudent(Student& student); // In danh sach cac khoa hoc ma Sinh Vien nay dang theo hoc
+
+
+	//Check
+	int isStudentInList(string name_input);
+	int isCourseInList(string name_input);
 	
 	//In cac SinhVien nao ma hoc course dau vao
 	void printStudentFromCourse(Courses& a);
-
 	int countStudentsInACourse(Courses a);
 	
 };
