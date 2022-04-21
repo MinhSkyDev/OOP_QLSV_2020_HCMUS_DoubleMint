@@ -1,57 +1,63 @@
 #include "Courses.h"
+#include <iostream>
+#include <string>
 
-Courses::Courses()
-{
+using namespace std;
+
+Courses::Courses() {
+	name = "";
 }
 
-Courses::~Courses()
-{
+Courses::~Courses() {
+	name = "";
 }
 
-Courses::Courses(Courses& c)
-{
+Courses::Courses(Courses& c) {
+	name = c.name;
+	roster = c.roster;		// Definition in roster.cpp
 }
 
-void Courses::operator=(Courses& c)
-{
+void Courses::operator=(Courses& c) {
+	name = c.name;
+	roster = c.roster;		// Definition in roster.cpp
 }
 
-void Courses::setName(const string& Name)
-{
+string Courses::getName() {
+	return name;
 }
 
-void Courses::setRoster(Roster& r)
-{
+Roster Courses::getRoster() {
+	return roster;
 }
 
-string Courses::getName()
-{
-	return string();
+void Courses::setName(const string& Name) {
+	name = Name;
 }
 
-Roster Courses::getRoster()
-{
-	
+void Courses::setRoster(Roster& r) {
+	roster = r;		// Definition in roster.cpp
 }
 
-void Courses::addRoster(string roster_name)
-{
+void Courses::addRoster(string roster_name) {
+	roster.addRoster(roster_name);
 }
 
-bool Courses::isHaveRoster(string roster_name)
-{
-	return false;
+bool Courses::isHaveRoster(string roster_name) {
+	if (roster.isCourseHaveRoster(roster_name) == -1)
+		return false;
+	return true;
 }
 
-void Courses::deleteRoster(string roster_name)
-{
+void Courses::deleteRoster(string roster_name) {
+	roster.deleteRoster(roster_name);
 }
 
-void Courses::updateRoster(string roster_name_src, string rostere_name_dest)
-{
+void Courses::updateRoster(string roster_name_src, string rostere_name_dest) {
+	roster.updateRoster(roster_name_src, rostere_name_dest);
 }
 
-ostream& operator<<(ostream& out, Courses& c)
-{
-	// // O: insert return statement here
+ostream& operator<<(ostream& out, Courses& c) {
+	out << "Mon hoc: " << c.name << '\n';
+	out << c.roster << '\n';
+	return out;
 }

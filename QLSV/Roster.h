@@ -1,14 +1,15 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cstddef>
 using namespace std;
+
 // Lop hau to cua Course (VD: 20CTT2, 1, a...)
 class Roster
 {
 private:
 	string* roster;
 	int numOfCourses;
-	int numOfStudents;
 public:
 	// Default Constructor
 	Roster();
@@ -22,6 +23,7 @@ public:
 	// Kiem tra xem mot hau to co thuoc mot khoa hoc hay khong
 	// Tra ve index cua hau to neu tim thay, -1 neu khong ton tai
 	int isCourseHaveRoster(const string& roster_find);
+
 
 	// CRUD
 	// Create: (add a new roster to the list)

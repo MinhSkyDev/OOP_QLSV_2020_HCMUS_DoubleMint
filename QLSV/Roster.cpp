@@ -3,7 +3,6 @@
 Roster::Roster() {
 	roster = nullptr;
 	numOfCourses = 0;
-	numOfStudents = 0;
 }
 
 Roster::~Roster() {
@@ -12,7 +11,6 @@ Roster::~Roster() {
 		roster = nullptr;
 	}
 	numOfCourses = 0;
-	numOfStudents = 0;
 }
 
 Roster::Roster(Roster& r) {
@@ -20,7 +18,6 @@ Roster::Roster(Roster& r) {
 		delete[] roster;
 	roster = new string[r.numOfCourses];
 	numOfCourses = r.numOfCourses;
-	numOfStudents = r.numOfStudents;
 	for (int i = 0; i < numOfCourses; i++)
 		roster[i] = r.roster[i];
 }
@@ -30,7 +27,6 @@ void Roster::operator=(Roster& r) {
 		delete[] roster;
 	roster = new string[r.numOfCourses];
 	numOfCourses = r.numOfCourses;
-	numOfStudents = r.numOfStudents;
 	for (int i = 0; i < numOfCourses; i++)
 		roster[i] = r.roster[i];
 }
@@ -49,11 +45,16 @@ string normalizeString(string inp) {
 		inp.erase(0, 1);
 	int j = 0;
 	while (j < inp.size() - 1) {
-		if (inp[j] == ' ' && inp[j + 1] == ' ')
-			inp.erase(j + 1, 1);
+		if (inp[j] == ' ') {
+			if (inp[++j] == ' ')
+				inp.erase(j, 1);
+			j--;
+		}
 		else
 			j++;
 	}
+	while (inp[inp.size() - 1] == ' ')
+		inp.erase(inp.size() - 1, 1);
 	return inp;
 }
 
@@ -77,15 +78,15 @@ void Roster::addRoster(string roster_name) {
 		return;
 	}
 	// Mot khoa hoc chi toi da 40 sinh vien dang ki
-	else if (numOfStudents == 40) {
+	/*else if (numOfStudents == 40) {			// Bo di thuoc tinh numOfStudent, de cho registar quan ly
 		cout << "Lop nay da day, khong dang ki duoc nua!\n";
 		return;
-	}
+	}*/
 	int newSize = numOfCourses + 1;		// Create this to avoid C6385 warning from IDE
 	string* tempRoster = new string[newSize];
 	for (int i = 0; i < newSize - 1; i++)
 		tempRoster[i] = roster[i];
-	tempRoster[numOfCourses] = roster_name;
+	tempRoster[numOfCourses++] = roster_name;
 	delete[] roster;
 	roster = tempRoster;
 }
@@ -114,7 +115,7 @@ void Roster::deleteRoster(string roster_name) {
 	string* tempRoster = new string[newSize];
 	for (int i = 0; i < ind; i++)
 		tempRoster[i] = roster[i];
-	for (int i = ind; i < newSize; i++) 
+	for (int i = ind; i < newSize; i++)
 		tempRoster[i] = roster[i + 1];
 	numOfCourses--;
 
@@ -123,7 +124,7 @@ void Roster::deleteRoster(string roster_name) {
 }
 
 ostream& operator<<(ostream& out, Roster& r) {
-	cout << "Danh sach cac lop hoc cua mon hoc nay la:\n";
+	out << "Danh sach cac lop hoc cua mon hoc nay la:\n";
 	for (int i = 0; i < r.numOfCourses; i++)
 		out << r.roster[i] << '\n';
 	return out;
