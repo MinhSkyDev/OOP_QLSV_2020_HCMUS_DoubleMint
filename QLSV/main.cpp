@@ -15,5 +15,11 @@ int main() {
 	a.addCourse("CSDL_CTT1");
 	a.addCourse("HTMT_CTT2");
 	a.addCourse("OOP_CTT1");
-	cout << a;
+	cout << a << '\n';
+	Courses b;
+	b.setName("OOP");
+	b.addRoster("CTT1");
+	b.addRoster("CTT2");
+	b.addRoster("CTT2");
+	cout << b;
 }
