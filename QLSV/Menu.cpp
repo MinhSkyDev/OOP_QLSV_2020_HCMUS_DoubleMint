@@ -1,5 +1,14 @@
 #include "Menu.h"
 
+Menu::Menu() {
+
+
+}
+
+Menu::~Menu() {
+
+}
+
 void Menu::init() {
 	while (true) {
 		system("cls");
@@ -7,7 +16,7 @@ void Menu::init() {
 		cout << "--------------Chuong trinh quan ly sinh vien va khoa hoc--------------\n";
 		cout << "Chon 1 de them mot Sinh Vien vao chuong trinh !\n";
 		cout << "Chon 2 de them mot Khoa Hoc vao chuong trinh !\n";
-		cout << "Chon 3 de dang ky mon hoc cho Sinh Vien !";
+		cout << "Chon 3 de dang ky mon hoc cho Sinh Vien !\n";
 		cout << "Chon 4 de cap nhat mon hoc ma Sinh Vien da dang ky \n";
 		cout << "Chon 5 de them mot khoa hoc con nam trong mot Khoa Hoc \n";
 		cout << "Chon 6 de cap nhat cac khoa hoc con nam trong mot Khoa Ho \n";
@@ -102,7 +111,7 @@ void Menu::init() {
 			string name_Course;
 			getline(cin, name_Course);
 			int indexCourse = moodle.isCourseInList(name_Course);
-			while (indexStudent == -1)
+			while (indexCourse == -1)
 			{
 				cout << "Lop hoc ko co trong danh sach, xin nhap lai: ";
 				getline(cin, name_Course);
@@ -110,15 +119,14 @@ void Menu::init() {
 				cout << endl;
 			}
 
-
-
-
-
+			cout << endl;
+			moodle.updateSubCourseFromStudent(moodle.getStudentIndex(indexStudent), moodle.getCourseIndex(indexCourse));
 			system("pause");
 		}
 		else if (selection == 5)
 		{
 			system("cls");
+
 			system("pause");
 		}
 		else if (selection == 6)
