@@ -120,11 +120,26 @@ void Registar::printSubCourse(int course_index) {
 
 void Registar::printStudentFromCourse(Courses& a)
 {
+	cout << a;
 }
 
-int Registar::countStudentsInACourse(Courses a)
+int Registar::countStudentsInACourse(string a)
 {
-	return 0;
+	int count = 0;
+	string courseName = a;
+	for (int i = 0; i < nStudents; i++) {
+		Schedule Sch = students[i].getSchedule();		// Thoi khoa bieu cua sinh vien i
+		string* temp = Sch.getCourses();		// Mang cac courses ma sinh vien i dang ki 
+		int n = Sch.getQuantity();				// So luong courses ma sinh vien i dang ki
+		for (int j = 0; j < n; j++) {
+			istringstream ss(temp[j]);
+			string token;
+			getline(ss, token, '_');
+			if (token == courseName)
+				count++;
+		}
+	}
+	return count;
 }
 
 void Registar::updateSubCourseFromStudent(Student& student, Courses& course) {
@@ -144,16 +159,64 @@ void Registar::updateSubCourseFromStudent(Student& student, Courses& course) {
 	string name_course_sub_dst;
 	cout << "Xin moi nhap lop ban muon doi: ";
 	getline(cin, name_course_sub_dst);
-	course.updateRoster(name_courseSub, name_course_sub_dst);
+
+	//string convert
+	name_courseSub = course.getName() + "_" + name_courseSub;
+	name_course_sub_dst = course.getName() + "_" + name_course_sub_dst;
+	student.updateCourse(name_courseSub, name_course_sub_dst);
 }
 
 
 void Registar::addSubCourseIntoCourse(Courses& course)
 {
+	cout << "Danh sach hien tai cua khoa hoc " << course.getName() << " :\n";
+	cout << course;
+
+	cout << "Xin moi nhap ten lop hoc con ban muon them (Vd: CTT2, CTT3): ";
+	string input_name;
+	getline(cin, input_name);
+
+	//check trong course co hau to lop hoc con chua 
+	while (course.isHaveRoster(input_name)) {
+		cout << "\nLop hoc da ton tai trong danh sach, xin moi nhap lai: ";
+		getline(cin, input_name);
+	}
+
+	//Neu co roi thi them vo
+	course.addRoster(input_name);
+	cout << "Da them lop " << course.getName() << "_" << input_name << "vao danh sach !";
 }
 
 void Registar::updateSubCourseFormCourse(Courses& course)
 {
+	cout << "Danh sach cac lop trong khoa hoc " << course.getName() << " :\n";
+	cout << course;
+
+	cout << endl << "Xin moi nhap ten lop hoc ma ban muon doi: ";
+	string course_src, course_dst;
+	getline(cin, course_src);
+
+	//Check course_src co trong danh sach ko, ko thi bat nhap lai 
+	while (course.isHaveRoster(course_src) == false)
+	{
+		cout << "Lop hoc khong ton tai trong danh sach, xin moi nhap lai: ";
+		getline(cin, course_src);
+	}
+	cout << endl;
+	
+	cout << "Ban muon chuyen lop " << course.getName() << "_" << course_src << " thanh ten gi ?:";
+	getline(cin, course_dst);
+	cout << endl;
+	//check course_dst co ton tai trong danh sach ko, neu co thi bat nhap lai
+	while (course.isHaveRoster(course_dst) == true)
+	{
+		cout << "Lop hoc da ton tai trong danh sach, xin moi nhap lai: ";
+		getline(cin, course_dst);
+		cout << endl;
+	}
+		
+	course.updateRoster(course_src, course_dst);
+	cout << "Da hoan thanh viec doi ten lop !\n";
 }
 
 void Registar::addOneStudent(string name_input)

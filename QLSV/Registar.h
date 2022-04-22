@@ -38,7 +38,7 @@ public:
 	
 	//In cac SinhVien nao ma hoc course dau vao
 	void printStudentFromCourse(Courses& a);
-	int countStudentsInACourse(Courses a);
+	int countStudentsInACourse(string a);
 	void printSubCourse(Courses& a);
 	void printSubCourse(int course_index);
 

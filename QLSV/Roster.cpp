@@ -101,8 +101,15 @@ void Roster::deleteRoster(string roster_name) {
 }
 
 ostream& operator<<(ostream& out, Roster& r) {
-	out << "Danh sach cac lop hoc cua mon hoc nay la:\n";
-	for (int i = 0; i < r.numOfCourses; i++)
-		out << r.roster[i] << '\n';
+	if (r.numOfCourses == 0)
+	{
+		cout << "Khoa hoc nay khong co lop hoc nao ca !\n";
+	}
+	else {
+		out << "Danh sach cac lop hoc cua mon hoc nay la:\n";
+		for (int i = 0; i < r.numOfCourses; i++)
+			out << r.roster[i] << '\n';
+	}
 	return out;
 }
+

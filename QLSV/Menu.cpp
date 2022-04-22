@@ -18,7 +18,7 @@ void Menu::init() {
 		cout << "Chon 2 de them mot Khoa Hoc vao chuong trinh !\n";
 		cout << "Chon 3 de dang ky mon hoc cho Sinh Vien !\n";
 		cout << "Chon 4 de cap nhat mon hoc ma Sinh Vien da dang ky \n";
-		cout << "Chon 5 de them mot khoa hoc con nam trong mot Khoa Hoc \n";
+		cout << "Chon 5 de them mot lop hoc con nam trong mot Khoa Hoc \n";
 		cout << "Chon 6 de cap nhat cac khoa hoc con nam trong mot Khoa Hoc \n";
 		cout << "Chon 7 de huy dang ky mot mon hoc cho Sinh Vien \n";
 		cout << "Chon 8 de xoa mot Sinh Vien ra khoi chuong trinh \n";
@@ -43,7 +43,7 @@ void Menu::init() {
 				getline(cin, name_input);
 			}
 			moodle.addOneStudent(name_input);
-			cout << "\n Sinh vien " << name_input << " da duoc them vao danh sach \n";
+			cout << "\nSinh vien " << name_input << " da duoc them vao danh sach \n";
 			system("pause");
 		}
 		else if (selection == 2)
@@ -115,6 +115,7 @@ void Menu::init() {
 			}
 
 			//Lay ten mon hoc muon cap nhat
+			cout << "Xin moi nhap khoa hoc ma ban muon cap nhat: ";
 			string name_Course;
 			getline(cin, name_Course);
 			int indexCourse = moodle.isCourseInList(name_Course);
@@ -153,12 +154,13 @@ void Menu::init() {
 		else if (selection == 6)
 		{
 			system("cls");
+			cin.ignore();
 			cout << "Xin moi nhap ten khoa hoc ban muon sua: ";
 			string name_Course;
 			getline(cin, name_Course);
 
 			int indexCourse = moodle.isCourseInList(name_Course);
-			while (indexCourse != -1)
+			while (indexCourse == -1)
 			{
 				cout << "Khoa hoc khong ton tai trong danh sach, xin moi nhap lai: ";
 				getline(cin, name_Course);
