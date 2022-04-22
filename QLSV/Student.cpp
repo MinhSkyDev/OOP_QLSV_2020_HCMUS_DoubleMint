@@ -33,8 +33,9 @@ string Student::getName() {
 	return this->name;
 }
 
-Schedule Student::getSchedule() {
-	return this->schedule;
+Schedule& Student::getSchedule() {
+	Schedule a = this->schedule;
+	return a;
 }
 
 void Student::addCourse(string course_name) {

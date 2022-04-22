@@ -26,7 +26,7 @@ public:
 	//CRUD Create Read Update Delete
 	void regSinhVien(Student& student, Courses& course); // Dang ky SinhVien vao mot khoa hoc nao do
 	void regSinhVien(int student_index, int course_index);
-	void delCoursesFromStudent(Student& student, Courses del); // Xoa SinhVien khoi mot khoa hoc nao do
+	void delCoursesFromStudent(Student& student, string del); // Xoa SinhVien khoi mot khoa hoc nao do
 	void printCoursesFromStudent(Student& student); // In danh sach cac khoa hoc ma Sinh Vien nay dang theo hoc
 	void updateSubCourseFromStudent(Student& student, Courses& a); //Update lop hoc ma Sinh Vien Dang ky
 	void addSubCourseIntoCourse(Courses& course); //Them mot lop vao mot khoa hoc

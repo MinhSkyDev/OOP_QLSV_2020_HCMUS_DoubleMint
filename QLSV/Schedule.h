@@ -11,7 +11,7 @@ public:
 	Schedule();
 	~Schedule();
 	Schedule(Schedule& a);
-	void operator=(Schedule& a);
+	void operator=(Schedule a);
 
 	//Check if student has a specific Courses
 	//return the index, if index = -1 then the course is not exist
@@ -22,6 +22,8 @@ public:
 	void deleteCourse(string course_name);
 	void updateCourse(string course_name_src, string course_name_dst);
 
+	string* getCourses();
+	int getQuantity();
 	
 	
 	//input output
