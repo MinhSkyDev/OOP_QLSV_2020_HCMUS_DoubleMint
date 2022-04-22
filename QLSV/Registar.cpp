@@ -97,11 +97,21 @@ void Registar::printSubCourse(Courses& a) {
 }
 
 int Registar::isStudentInList(string name_input) {
-	return 1;
+	for (int i = 0; i < this->nStudents; i++)
+	{
+		if (students[i].getName() == name_input)
+			return i;
+	}
+	return -1;
 }
 
 int Registar::isCourseInList(string name_input) {
-	return 0;
+	for (int i = 0; i < this->nCourses; i++)
+	{
+		if (courses[i].getName() == name_input)
+			return i;
+	}
+	return -1;
 }
 
 void Registar::printSubCourse(int course_index) {
@@ -165,7 +175,21 @@ void Registar::addOneStudent(string name_input)
 }
 
 void Registar::addOneCourse(string name_input) {
+	int nCourses_new = this->nCourses + 1;
+	Courses* courses_new = new Courses[nCourses_new];
 
+	//Copy all from the old array
+	for (int i = 0; i < this->nCourses; i++)
+	{
+		courses_new[i] = courses[i];
+	}
+
+	Courses add;
+	add.setName(name_input);
+	courses_new[this->nCourses] = add;
+	delete[] this->courses;
+	this->courses = courses_new;
+	this->nCourses = nCourses_new;
 }
 
 Courses& Registar::getCourseIndex(int index)

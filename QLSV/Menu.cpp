@@ -36,7 +36,7 @@ void Menu::init() {
 			getline(cin, name_input);
 
 			//Neu nhu SinhVien co trong danh sach thi phai nhap lai
-			while (moodle.isStudentInList(name_input))
+			while (moodle.isStudentInList(name_input) != -1)
 			{
 				cout << endl;
 				cout << "Sinh vien da ton tai trong danh sach, xin vui long nhap lai: ";
@@ -53,7 +53,14 @@ void Menu::init() {
 			cin.ignore();
 			cout << "Xin moi nhap ten cua Khoa Hoc muon them vao danh sach: ";
 			getline(cin, name_input);
+
+			while (moodle.isCourseInList(name_input) != -1)
+			{
+				cout << "\nKhoa hoc da ton tai trong danh sach, xin moi nhap lai: ";
+				getline(cin, name_input);
+			}
 			moodle.addOneCourse(name_input);
+			cout << "\nKhoa hoc " << name_input << " da duoc them vao danh sach !\n";
 			system("pause");
 		}
 		else if (selection == 3)
