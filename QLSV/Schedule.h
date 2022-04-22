@@ -11,7 +11,7 @@ public:
 	Schedule();
 	~Schedule();
 	Schedule(Schedule& a);
-	void operator=(Schedule a);
+	void operator=(Schedule& a);
 
 	//Check if student has a specific Courses
 	//return the index, if index = -1 then the course is not exist
