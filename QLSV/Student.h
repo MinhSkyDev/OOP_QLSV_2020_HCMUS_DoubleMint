@@ -18,7 +18,7 @@ public:
 	void setName(const string& Name);
 	void setSchedule( Schedule& a);
 	string getName();
-	Schedule getSchedule();
+	Schedule& getSchedule();
 
 
 	//CRUD

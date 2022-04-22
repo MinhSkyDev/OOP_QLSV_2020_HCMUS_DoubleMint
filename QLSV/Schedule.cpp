@@ -22,7 +22,7 @@ Schedule::Schedule(Schedule& a) {
 		this->courses[i] = a.courses[i];
 }
 
-void Schedule::operator=(Schedule& a) {
+void Schedule::operator=(Schedule a) {
 	if (this->courses != nullptr) {
 		//Truong hop ma neu da khoi tao bang Constructor-ThamSo hoac da co them bot courses
 		delete[] this->courses;
@@ -110,6 +110,16 @@ void Schedule::updateCourse(string course_name_src, string course_name_dst) {
 		return;
 	}
 	this->courses[indexToUpdate] = course_name_dst;
+}
+
+string* Schedule::getCourses()
+{
+	return courses;
+}
+
+int Schedule::getQuantity()
+{
+	return quantity;
 }
 
 ostream& operator<<(ostream& out, Schedule& a) {
