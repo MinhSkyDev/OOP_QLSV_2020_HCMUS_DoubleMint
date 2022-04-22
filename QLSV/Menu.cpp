@@ -126,6 +126,22 @@ void Menu::init() {
 		else if (selection == 5)
 		{
 			system("cls");
+			cin.ignore();
+			cout << "Xin moi nhap lop hoc ban muon sua: ";
+			string name_Course;
+			getline(cin, name_Course);
+
+			while (moodle.isCourseInList(name_Course) == -1) //Input Course_name, vd: OOP
+			{
+				cout << "Khoa hoc khong ton tai trong danh sach, xin moi nhap lai: ";
+				getline(cin, name_Course);
+			}
+
+			cout << endl;
+			cout << "Xin moi nhap ten cua lop ban muon them vao: ";
+			string name_Course_sub;
+			getline(cin, name_Course_sub);
+
 
 			system("pause");
 		}

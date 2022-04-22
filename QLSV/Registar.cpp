@@ -80,7 +80,10 @@ void Registar::updateSubCourseFromStudent(Student& student, Courses& course) {
 		getline(cin, name_courseSub);
 		cout << endl;
 	}
-	//course.updateRoster(name_courseSub);
+	string name_course_sub_dst;
+	cout << "Xin moi nhap lop ban muon doi: ";
+	getline(cin, name_course_sub_dst);
+	course.updateRoster(name_courseSub, name_course_sub_dst);
 }
 
 void Registar::addOneStudent(string name_input)
