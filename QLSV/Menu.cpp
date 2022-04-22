@@ -19,7 +19,7 @@ void Menu::init() {
 		cout << "Chon 3 de dang ky mon hoc cho Sinh Vien !\n";
 		cout << "Chon 4 de cap nhat mon hoc ma Sinh Vien da dang ky \n";
 		cout << "Chon 5 de them mot khoa hoc con nam trong mot Khoa Hoc \n";
-		cout << "Chon 6 de cap nhat cac khoa hoc con nam trong mot Khoa Ho \n";
+		cout << "Chon 6 de cap nhat cac khoa hoc con nam trong mot Khoa Hoc \n";
 		cout << "Chon 7 de huy dang ky mot mon hoc cho Sinh Vien \n";
 		cout << "Chon 8 de xoa mot Sinh Vien ra khoi chuong trinh \n";
 		cout << "Chon 9 de xoa mot Khoa Hoc ra khoi chuong trinh \n";
@@ -127,27 +127,38 @@ void Menu::init() {
 		{
 			system("cls");
 			cin.ignore();
-			cout << "Xin moi nhap lop hoc ban muon sua: ";
+			cout << "Xin moi nhap ten khoa hoc ban muon them lop hoc: ";
 			string name_Course;
 			getline(cin, name_Course);
-
-			while (moodle.isCourseInList(name_Course) == -1) //Input Course_name, vd: OOP
+			
+			int indexCourse = moodle.isCourseInList(name_Course);
+			while (indexCourse == -1) //Input Course_name, vd: OOP
 			{
 				cout << "Khoa hoc khong ton tai trong danh sach, xin moi nhap lai: ";
 				getline(cin, name_Course);
+				indexCourse = moodle.isCourseInList(name_Course);
 			}
 
-			cout << endl;
-			cout << "Xin moi nhap ten cua lop ban muon them vao: ";
-			string name_Course_sub;
-			getline(cin, name_Course_sub);
-
+			moodle.addSubCourseIntoCourse(moodle.getCourseIndex(indexCourse));
 
 			system("pause");
 		}
 		else if (selection == 6)
 		{
 			system("cls");
+			cout << "Xin moi nhap ten khoa hoc ban muon sua: ";
+			string name_Course;
+			getline(cin, name_Course);
+
+			int indexCourse = moodle.isCourseInList(name_Course);
+			while (indexCourse != -1)
+			{
+				cout << "Khoa hoc khong ton tai trong danh sach, xin moi nhap lai: ";
+				getline(cin, name_Course);
+				indexCourse = moodle.isCourseInList(name_Course);
+			}
+
+			moodle.updateSubCourseFormCourse(moodle.getCourseIndex(indexCourse));
 			system("pause");
 		}
 		else if (selection == 7)

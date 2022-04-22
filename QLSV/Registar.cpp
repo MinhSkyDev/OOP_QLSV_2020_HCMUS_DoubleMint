@@ -3,6 +3,8 @@
 Registar::Registar() {
 	this->courses = nullptr;
 	this->students = nullptr;
+	this->nStudents = 0;
+	this->nCourses = 0;
 }
 
 Registar::~Registar() {
@@ -113,8 +115,30 @@ void Registar::updateSubCourseFromStudent(Student& student, Courses& course) {
 	course.updateRoster(name_courseSub, name_course_sub_dst);
 }
 
+void Registar::addSubCourseIntoCourse(Courses& course)
+{
+}
+
+void Registar::updateSubCourseFormCourse(Courses& course)
+{
+}
+
 void Registar::addOneStudent(string name_input)
 {
+	int nStudents_new = this->nStudents + 1;
+	Student* students_new = new Student[nStudents_new];
+
+	//Copy all from the old array
+	for (int i = 0; i < this->nStudents; i++)
+	{
+		students_new[i] = this->students[i];
+	}
+	Student add;
+	add.setName(name_input);
+	students_new[this->nStudents] = add;
+	delete[] this->students;
+	this->students = students_new;
+	this->nStudents = nStudents_new;
 }
 
 void Registar::addOneCourse(string name_input)
