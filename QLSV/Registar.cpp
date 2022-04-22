@@ -97,7 +97,7 @@ void Registar::printSubCourse(Courses& a) {
 }
 
 int Registar::isStudentInList(string name_input) {
-	
+	return 1;
 }
 
 int Registar::isCourseInList(string name_input) {
@@ -137,7 +137,7 @@ void Registar::updateSubCourseFromStudent(Student& student, Courses& course) {
 	course.updateRoster(name_courseSub, name_course_sub_dst);
 }
 
-<<<<<<< HEAD
+
 void Registar::addSubCourseIntoCourse(Courses& course)
 {
 }
@@ -162,10 +162,6 @@ void Registar::addOneStudent(string name_input)
 	delete[] this->students;
 	this->students = students_new;
 	this->nStudents = nStudents_new;
-=======
-void Registar::addOneStudent(string name_input) {
-	students->getName();
->>>>>>> 8200940cf2c3cd2b3f6581114caf24564c64d3c7
 }
 
 void Registar::addOneCourse(string name_input) {

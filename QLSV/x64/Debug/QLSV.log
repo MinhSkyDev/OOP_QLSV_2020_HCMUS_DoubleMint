@@ -1,2 +1,5 @@
-﻿  Registar.cpp
+﻿  main.cpp
+  Registar.cpp
+D:\K20 FIT HCMUS\OOP\Thực Hành_Ở nhà\Đồ án\QLSV\QLSV\QLSV\Registar.cpp(61,42): warning C4806: '==': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+  Generating Code...
   QLSV.vcxproj -> D:\K20 FIT HCMUS\OOP\Thực Hành_Ở nhà\Đồ án\QLSV\QLSV\x64\Debug\QLSV.exe
