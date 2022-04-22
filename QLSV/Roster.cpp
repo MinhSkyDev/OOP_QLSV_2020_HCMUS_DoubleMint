@@ -1,5 +1,5 @@
 #include "Roster.h"
-
+#include "Function.h"
 Roster::Roster() {
 	roster = nullptr;
 	numOfCourses = 0;
@@ -33,30 +33,7 @@ void Roster::operator=(Roster& r) {
 
 // Y tuong giong nhu o ben class Schedule, khi kiem tra mot hau to co nam trong khoa hoc
 // hay khong, ta kiem tra no voi mot mang phu la cac tien to duoc ghi in hoa het, cac tu
-// cach nhay boi 1 dau cach, dam bao cho viec tim kiem chinh xac
-
-string normalizeString(string inp) {
-	// Vi du:
-	// input: ' asd  123 456  '
-	// Output: 'asd 123 456'
-	for (unsigned int i = 0; i < inp.size(); i++)
-		inp[i] = toupper(inp[i]);
-	while (inp[0] == ' ')
-		inp.erase(0, 1);
-	int j = 0;
-	while (j < inp.size() - 1) {
-		if (inp[j] == ' ') {
-			if (inp[++j] == ' ')
-				inp.erase(j, 1);
-			j--;
-		}
-		else
-			j++;
-	}
-	while (inp[inp.size() - 1] == ' ')
-		inp.erase(inp.size() - 1, 1);
-	return inp;
-}
+// cach nhau boi 1 dau cach, dam bao cho viec tim kiem chinh xac
 
 int Roster::isCourseHaveRoster(const string& roster_find) {
 	// Chuan hoa chuoi roster can tim kiem

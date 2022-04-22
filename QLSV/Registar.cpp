@@ -1,59 +1,86 @@
 #include "Registar.h"
 
-Registar::Registar()
-{
+Registar::Registar() {
 	this->courses = nullptr;
 	this->students = nullptr;
 }
 
-Registar::~Registar()
-{
+Registar::~Registar() {
+	if (courses != nullptr) {
+		delete[] courses;
+		courses = nullptr;
+	}
+	if (students != nullptr) {
+		delete[] students;
+		students = nullptr;
+	}
 }
 
-Registar::Registar(Registar& a)
-{
+Registar::Registar(Registar& a) {
+	if (courses != nullptr) {
+		delete[] courses;
+		courses = nullptr;
+	}
+	courses = a.courses;
+	if (students != nullptr) {
+		delete[] students;
+		students = nullptr;
+	}
+	students = a.students;
 }
 
-void Registar::operator=(Registar& a)
-{
+void Registar::operator=(Registar& a) {
+	if (courses != nullptr) {
+		delete[] courses;
+		courses = nullptr;
+	}
+	courses = a.courses;
+	if (students != nullptr) {
+		delete[] students;
+		students = nullptr;
+	}
+	students = a.students;
 }
 
-void Registar::regSinhVien(Student& student, Courses& course)
-{
-
+void Registar::regSinhVien(Student& student, Courses& course) {
+	// Ghi ra danh sach cac lop hoc cua mon course
+	// Nguoi dung nhap vao lop muon dang ky
+	// Kiem tra lop do co ton tai hay khong
+	// Neu co goi student.addCourse(ten lop hoc day du, vi du OOP_CTT2)
+	// Phat sinh van de gop chuoi course + subcourse
+	cout << course << '\n';
+	cout << "Nhap vao ten lop muon dang ki, vi du: CTT2 (Hoa thuong deu duoc): ";
+	string courseName;
+	getline(cin, courseName);
+	
 }
 
-void Registar::regSinhVien(int student_index, int course_index)
-{
+void Registar::regSinhVien(int student_index, int course_index) {
 	this->regSinhVien(this->students[student_index], this->courses[course_index]);
 }
 
-void Registar::delCoursesFromStudent(Student& student, Courses del)
-{
+void Registar::delCoursesFromStudent(Student& student, Courses del) {
+
 }
 
-void Registar::printCoursesFromStudent(Student& student)
-{
+void Registar::printCoursesFromStudent(Student& student) {
+
 }
 
 
-void Registar::printSubCourse(Courses& a)
-{
+void Registar::printSubCourse(Courses& a) {
 	cout << a;
 }
 
-int Registar::isStudentInList(string name_input)
-{
+int Registar::isStudentInList(string name_input) {
 	return 0;
 }
 
-int Registar::isCourseInList(string name_input)
-{
+int Registar::isCourseInList(string name_input) {
 	return 0;
 }
 
-void Registar::printSubCourse(int course_index)
-{
+void Registar::printSubCourse(int course_index) {
 	this->printSubCourse(this->courses[course_index]);
 }
 
