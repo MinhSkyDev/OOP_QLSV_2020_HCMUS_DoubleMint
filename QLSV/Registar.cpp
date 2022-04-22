@@ -18,6 +18,7 @@ Registar::~Registar() {
 		delete[] students;
 		students = nullptr;
 	}
+	nCourses = nStudents = 0;
 }
 
 Registar::Registar(Registar& a) {
@@ -26,6 +27,8 @@ Registar::Registar(Registar& a) {
 		courses = nullptr;
 	}
 	courses = a.courses;
+	nCourses = a.nCourses;
+	nStudents = a.nStudents;
 	if (students != nullptr) {
 		delete[] students;
 		students = nullptr;
@@ -118,13 +121,11 @@ void Registar::printSubCourse(int course_index) {
 	this->printSubCourse(this->courses[course_index]);
 }
 
-void Registar::printStudentFromCourse(Courses& a)
-{
+void Registar::printStudentFromCourse(Courses& a) {
 	cout << a;
 }
 
-int Registar::countStudentsInACourse(string a)
-{
+int Registar::countStudentsInACourse(string a) {
 	int count = 0;
 	string courseName = a;
 	for (int i = 0; i < nStudents; i++) {
@@ -167,8 +168,7 @@ void Registar::updateSubCourseFromStudent(Student& student, Courses& course) {
 }
 
 
-void Registar::addSubCourseIntoCourse(Courses& course)
-{
+void Registar::addSubCourseIntoCourse(Courses& course) {
 	cout << "Danh sach hien tai cua khoa hoc " << course.getName() << " :\n";
 	cout << course;
 
@@ -187,8 +187,7 @@ void Registar::addSubCourseIntoCourse(Courses& course)
 	cout << "Da them lop " << course.getName() << "_" << input_name << "vao danh sach !";
 }
 
-void Registar::updateSubCourseFormCourse(Courses& course)
-{
+void Registar::updateSubCourseFormCourse(Courses& course) {
 	cout << "Danh sach cac lop trong khoa hoc " << course.getName() << " :\n";
 	cout << course;
 
@@ -202,9 +201,8 @@ void Registar::updateSubCourseFormCourse(Courses& course)
 		cout << "Lop hoc khong ton tai trong danh sach, xin moi nhap lai: ";
 		getline(cin, course_src);
 	}
-	cout << endl;
 	
-	cout << "Ban muon chuyen lop " << course.getName() << "_" << course_src << " thanh ten gi ?:";
+	cout << "\nBan muon chuyen lop " << course.getName() << "_" << course_src << " thanh ten gi ?:";
 	getline(cin, course_dst);
 	cout << endl;
 	//check course_dst co ton tai trong danh sach ko, neu co thi bat nhap lai
@@ -219,51 +217,41 @@ void Registar::updateSubCourseFormCourse(Courses& course)
 	cout << "Da hoan thanh viec doi ten lop !\n";
 }
 
-void Registar::addOneStudent(string name_input)
-{
-	int nStudents_new = this->nStudents + 1;
-	Student* students_new = new Student[nStudents_new];
-
+void Registar::addOneStudent(string name_input) {
+	Student* students_new = new Student[++nStudents];
 	//Copy all from the old array
-	for (int i = 0; i < this->nStudents; i++)
-	{
-		students_new[i] = this->students[i];
+	for (int i = 0; i < nStudents; i++) {
+		if (i == nStudents - 1)
+			students_new[i].setName(name_input);
+		else
+			students_new[i] = this->students[i];
 	}
-	Student add;
-	add.setName(name_input);
-	students_new[this->nStudents] = add;
+	
 	delete[] this->students;
 	this->students = students_new;
-	this->nStudents = nStudents_new;
 }
 
 void Registar::addOneCourse(string name_input) {
-	int nCourses_new = this->nCourses + 1;
-	Courses* courses_new = new Courses[nCourses_new];
+	Courses* courses_new = new Courses[++nCourses];
 
 	//Copy all from the old array
-	for (int i = 0; i < this->nCourses; i++)
-	{
-		courses_new[i] = courses[i];
+	for (int i = 0; i < this->nCourses; i++) {
+		if (i == nCourses - 1)
+			courses_new[i].setName(name_input);
+		else
+			courses_new[i] = courses[i];
 	}
 
-	Courses add;
-	add.setName(name_input);
-	courses_new[this->nCourses] = add;
 	delete[] this->courses;
 	this->courses = courses_new;
-	this->nCourses = nCourses_new;
 }
 
-Courses& Registar::getCourseIndex(int index)
-{
-	
+Courses& Registar::getCourseIndex(int index) {
 	//Check legit index
 	return courses[index];
 }
 
-Student& Registar::getStudentIndex(int index)
-{
+Student& Registar::getStudentIndex(int index) {
 	//check legit index
 	return students[index];
 }
