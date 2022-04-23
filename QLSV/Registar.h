@@ -18,6 +18,9 @@ public:
 	//Input SinhVien,Khoa Hoc
 	void addOneStudent(string name_input);
 	void addOneCourse(string name_input);
+	void deleteCourse(int indexCourse);
+	void deleteStudent(int indexStudent);
+
 
 	//Getter Setter
 	Courses& getCourseIndex(int index);
@@ -41,6 +44,13 @@ public:
 	int countStudentsInACourse(string a);
 	void printSubCourse(Courses& a);
 	void printSubCourse(int course_index);
+
+
+
+	//Print all name Students
+	void printAllStudents();
+	//print all name Courses
+	void printAllCourses();
 
 
 

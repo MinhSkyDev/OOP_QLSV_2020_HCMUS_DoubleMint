@@ -173,16 +173,77 @@ void Menu::init() {
 		else if (selection == 7)
 		{
 			system("cls");
+			cin.ignore();
+			cout << "Xin moi nhap ten sinh vien muon huy dang ky mon hoc: ";
+			string name_Student;
+			getline(cin, name_Student);
+
+			cout << endl;
+			int indexStudent = moodle.isStudentInList(name_Student);
+			while (indexStudent == -1)
+			{
+				cout << "Sinh vien khong co trong danh sach, xin moi nhap lai: ";
+				getline(cin, name_Student);
+				cout << endl;
+				indexStudent = moodle.isStudentInList(name_Student);
+			}
+			
+			//In cac lop hoc ma sinh vien nhap vo hoc
+			moodle.printCoursesFromStudent(moodle.getStudentIndex(indexStudent));
+
+			cout << "\nXin moi nhap ten lop hoc ma ban muon huy dang ky (Ten day du cua lop hoc, vd: OOP_CTT1) : ";
+			string name_Course;
+			getline(cin, name_Course);
+			moodle.delCoursesFromStudent(moodle.getStudentIndex(indexStudent), name_Course);
+
+
+			cout << "\nDa huy dang ky thanh cong !\n";
 			system("pause");
 		}
 		else if (selection == 8)
 		{
 			system("cls");
+			cin.ignore();
+			moodle.printAllStudents();
+			cout << endl;
+			
+			cout << "Xin moi nhap ten sinh vien ma ban muon xoa khoi chuong trinh : ";
+			string name_Student;
+			getline(cin, name_Student);
+
+			int indexStudent = moodle.isStudentInList(name_Student);
+			while (indexStudent == -1) {
+				cout << "Sinh vien khong co trong danh sach, xin moi nhap lai: ";
+				getline(cin, name_Student);
+				cout << endl;
+				indexStudent = moodle.isStudentInList(name_Student);
+			}
+
+			moodle.deleteStudent(indexStudent);
+			cout << "Da xoa sinh vien khoi danh sach ! \n";
 			system("pause");
 		}
 		else if (selection == 9)
 		{
 			system("cls");
+			cin.ignore();
+			moodle.printAllCourses();
+			cout << endl;
+
+			cout << "Xin moi nhap ten khoa hoc ban muon xoa khoi chuong trinh: ";
+			string name_Course;
+			getline(cin, name_Course);
+			cout << endl;
+			int indexCourse = moodle.isCourseInList(name_Course);
+			while (indexCourse == -1)
+			{
+				cout << "Khoa hoc khong co trong danh sach, xin moi nhap lai: ";
+				getline(cin, name_Course);
+				indexCourse = moodle.isCourseInList(name_Course);
+			}
+
+			moodle.deleteCourse(indexCourse);
+			cout << "Da xoa khoa hoc khoi danh sach ! \n";
 			system("pause");
 		}
 		else if (selection == 0)

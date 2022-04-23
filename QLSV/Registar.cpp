@@ -90,9 +90,6 @@ void Registar::delCoursesFromStudent(Student& student, string del) {
 	}
 }
 
-void Registar::printCoursesFromStudent(Student& student) {
-	cout << student;
-}
 
 
 void Registar::printSubCourse(Courses& a) {
@@ -254,4 +251,67 @@ Courses& Registar::getCourseIndex(int index) {
 Student& Registar::getStudentIndex(int index) {
 	//check legit index
 	return students[index];
+}
+
+
+void Registar::printCoursesFromStudent(Student& a) {
+
+	cout << "Cac lop hoc ma sinh vien " << a.getName() << " hoc la: \n";
+	cout << a.getSchedule();
+
+}
+
+void Registar::printAllStudents() {
+	cout << "Danh sach cac sinh vien :\n";
+	for (int i = 0; i < this->nStudents; i++)
+	{
+		cout << this->students[i].getName();
+		cout << endl;
+	}
+}
+
+void Registar::printAllCourses() {
+	cout << "Danh sach cac khoa hoc: \n";
+	for (int i = 0; i < this->nCourses; i++)
+	{
+		cout << this->courses->getName();
+		cout << endl;
+	}
+}
+
+void Registar::deleteCourse(int indexCourse) {
+	Courses* courses_new = new Courses[this->nCourses - 1];
+	int count = 0;
+	for (int i = 0; i < indexCourse - 1; i++)
+	{
+		courses_new[count++] = courses[i];
+	}
+
+	for (int i = indexCourse + 1; i < this->nCourses; i++)
+	{
+		courses_new[count++] = courses[i];
+	}
+
+	delete[] courses;
+	courses = courses_new;
+	nCourses--;
+}
+
+void Registar::deleteStudent(int indexStudent) {
+	Student* students_new = new Student[this->nStudents - 1];
+	int count = 0; 
+	for (int i = 0; i < indexStudent - 1; i++)
+	{
+		students_new[count++] = students[i];
+	}
+
+	for (int i = indexStudent + 1; i < nStudents; i++)
+	{
+		students_new[count++] = students[i];
+	}
+
+	delete[] students;
+	students = students_new;
+	nStudents--;
+
 }
