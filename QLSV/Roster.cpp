@@ -48,6 +48,11 @@ int Roster::isCourseHaveRoster(const string& roster_find) {
 	return -1;
 }
 
+bool Roster::isRosterEmpty()
+{
+	return (this->numOfCourses == 0);
+}
+
 void Roster::addRoster(string roster_name) {
 	// Kiem tra ten hau to cua khoa hoc da co hay chua
 	if (isCourseHaveRoster(roster_name) != -1) {

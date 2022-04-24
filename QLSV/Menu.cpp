@@ -10,6 +10,7 @@ Menu::~Menu() {
 }
 
 void Menu::init() {
+
 	while (true) {
 		system("cls");
 		int selection;
@@ -48,6 +49,7 @@ void Menu::init() {
 		}
 		else if (selection == 2)
 		{
+
 			system("cls");
 			string name_input;
 			cin.ignore();
@@ -66,6 +68,24 @@ void Menu::init() {
 		else if (selection == 3)
 		{
 			system("cls");
+			if (moodle.isCourseEmpty() == true && moodle.isStudentEmpty() == true)
+			{
+				cout << "Ban chua them khoa hoc va sinh vien nao vao trong chuong trinh !\n";
+				system("pause");
+				continue;
+			}
+			else if (moodle.isCourseEmpty())
+			{
+				cout << "Ban chua them khoa hoc nao vao danh sach !\n";
+				system("pause");
+				continue;
+			}
+			else if (moodle.isStudentEmpty())
+			{
+				cout << "Ban chua them Sinh Vien nao vao danh sach !\n";
+				system("pause");
+				continue;
+			}
 			cin.ignore();
 			cout << "Xin moi nhap ten Sinh Vien dang ky mon hoc: ";
 			string name_Student;
@@ -79,6 +99,13 @@ void Menu::init() {
 				cout << endl;
 			}
 
+			if (moodle.countCoursesFromStudent(moodle.getStudentIndex(indexStudent)) 
+																		>= 5)
+			{
+				cout<<"Sinh vien "<<name_Student<<" da dang ky qua 5 mon hoc, khong the dang ky nua ! \n";
+				system("pause");
+				continue;
+			}
 
 			cout << "Xin moi nhap mon hoc ma Sinh Vien dang ky: ";
 			string name_Course;
@@ -86,20 +113,34 @@ void Menu::init() {
 			int indexCourse = moodle.isCourseInList(name_Course);
 			cout << endl;
 			while (indexCourse == -1) {
-				cout << "Lop hoc ko co trong danh sach, xin nhap lai: ";
+				cout << "Khoa hoc ko co trong danh sach, xin nhap lai: ";
 				getline(cin, name_Course);
 				indexCourse = moodle.isCourseInList(name_Course);
 				cout << endl;
 			}
 
-			moodle.regSinhVien(indexStudent, indexCourse);
+			if (moodle.countStudentsInACourse(name_Course) >= 40)
+			{
+				cout << "Lop da day, khong the dang ky nua ! \n";
+				system("pause");
+				continue;
+			}
 
-			cout << "Da dang ky lop hoc " << name_Course << " cho Sinh Vien " << name_Student << " thanh cong !\n";
+			moodle.regSinhVien(indexStudent, indexCourse);
 			system("pause");
 		}
 		else if (selection == 4)
 		{
 			system("cls");
+
+			if (moodle.isStudentEmpty())
+			{
+				cout << "Ban chua them Sinh Vien nao vao danh sach !";
+				system("pause");
+				continue;
+			}
+
+
 			cin.ignore();
 			cout << "Xin moi nhap ten Sinh Vien muon cap nhat mon hoc: ";
 
@@ -135,10 +176,19 @@ void Menu::init() {
 		{
 			system("cls");
 			cin.ignore();
+
+
+			if (moodle.isCourseEmpty()) {
+				cout << "Ban chua them mot khoa hoc nao vao trong danh sach !\n";
+				system("pause");
+				continue;
+			}
+
+
 			cout << "Xin moi nhap ten khoa hoc ban muon them lop hoc: ";
 			string name_Course;
 			getline(cin, name_Course);
-			
+
 			int indexCourse = moodle.isCourseInList(name_Course);
 			while (indexCourse == -1) //Input Course_name, vd: OOP
 			{
@@ -155,6 +205,13 @@ void Menu::init() {
 		{
 			system("cls");
 			cin.ignore();
+
+			if (moodle.isCourseEmpty()) {
+				cout << "Ban chua them mot khoa hoc nao vao trong danh sach !\n";
+				system("pause");
+				continue;
+			}
+
 			cout << "Xin moi nhap ten khoa hoc ban muon sua: ";
 			string name_Course;
 			getline(cin, name_Course);
@@ -174,6 +231,26 @@ void Menu::init() {
 		{
 			system("cls");
 			cin.ignore();
+
+			if (moodle.isCourseEmpty() == true && moodle.isStudentEmpty() == true)
+			{
+				cout << "Ban chua them khoa hoc va sinh vien nao vao trong chuong trinh !\n";
+				system("pause");
+				continue;
+			}
+			else if (moodle.isCourseEmpty())
+			{
+				cout << "Ban chua them khoa hoc nao vao danh sach !\n";
+				system("pause");
+				continue;
+			}
+			else if (moodle.isStudentEmpty())
+			{
+				cout << "Ban chua them Sinh Vien nao vao danh sach !\n";
+				system("pause");
+				continue;
+			}
+
 			cout << "Xin moi nhap ten sinh vien muon huy dang ky mon hoc: ";
 			string name_Student;
 			getline(cin, name_Student);
@@ -187,7 +264,7 @@ void Menu::init() {
 				cout << endl;
 				indexStudent = moodle.isStudentInList(name_Student);
 			}
-			
+
 			//In cac lop hoc ma sinh vien nhap vo hoc
 			moodle.printCoursesFromStudent(moodle.getStudentIndex(indexStudent));
 
@@ -204,9 +281,18 @@ void Menu::init() {
 		{
 			system("cls");
 			cin.ignore();
+
+			if (moodle.isStudentEmpty())
+			{
+				cout << "Ban chua them Sinh Vien nao vao danh sach !";
+				system("pause");
+				continue;
+			}
+
+
 			moodle.printAllStudents();
 			cout << endl;
-			
+
 			cout << "Xin moi nhap ten sinh vien ma ban muon xoa khoi chuong trinh : ";
 			string name_Student;
 			getline(cin, name_Student);
@@ -227,6 +313,14 @@ void Menu::init() {
 		{
 			system("cls");
 			cin.ignore();
+
+			if (moodle.isCourseEmpty())
+			{
+				cout << "Ban chua them khoa hoc nao vao danh sach !";
+				system("pause");
+				continue;
+			}
+
 			moodle.printAllCourses();
 			cout << endl;
 

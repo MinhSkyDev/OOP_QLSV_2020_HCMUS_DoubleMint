@@ -34,8 +34,7 @@ string Student::getName() {
 }
 
 Schedule& Student::getSchedule() {
-	Schedule a = this->schedule;
-	return a;
+	return this->schedule;
 }
 
 void Student::addCourse(string course_name) {
@@ -59,6 +58,11 @@ void Student::updateCourse(string course_name_source, string course_name_destina
 {
 	this->schedule.updateCourse(course_name_source, course_name_destination);
 
+}
+
+int Student::getNumCourses()
+{
+	return this->schedule.getQuantity();
 }
 
 

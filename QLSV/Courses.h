@@ -18,6 +18,8 @@ public:
 	Roster getRoster();		// tra ve roster
 	//Roster getRoster(int index);	// tra ve roster[index]
 
+	bool isCoursesEmpty();
+
 	//CRUD
 	void addRoster(string roster_name);
 	bool isHaveRoster(string roster_name);

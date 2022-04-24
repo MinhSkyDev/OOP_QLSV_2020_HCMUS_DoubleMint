@@ -29,7 +29,7 @@ public:
 
 	//Output
 	friend ostream& operator<<(ostream& out, Student& a);
-
+	int getNumCourses();
 
 
 };

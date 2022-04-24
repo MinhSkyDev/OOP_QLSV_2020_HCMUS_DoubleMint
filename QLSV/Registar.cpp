@@ -57,14 +57,25 @@ void Registar::regSinhVien(Student& student, Courses& course) {
 	// Phat sinh van de gop chuoi course + subcourse
 	cout << "Danh sach cac lop hoc cua mon " << course.getName() << '\n';
 	cout << course << '\n';
+
+	if (course.isCoursesEmpty())
+	{
+		cout << "Xin hay quay lai menu de them mot lop hoc cho khoa hoc ! \n";
+		return;
+	}
+
 	cout << "Nhap vao ten lop muon dang ki, vi du: CTT2 (Hoa thuong deu duoc): ";
 	string rosterName;
 	getline(cin, rosterName);
 	normalizeString(rosterName);
-	if (course.isHaveRoster(rosterName) == -1)
+	while (course.isHaveRoster(rosterName) == false) {
 		cout << "Khong ton tai lop hoc ten " << rosterName << " trong mon " << course.getName() << "!\n";
-	else
-		student.addCourse(course.getName() + "_" + rosterName);
+		cout << "Xin moi nhap lai: ";
+		getline(cin, rosterName);
+	}
+	
+	student.addCourse(course.getName() + "_" + rosterName);
+	cout << "Da dang ky lop hoc " << course.getName() <<"_"<< rosterName << " cho Sinh Vien " << student.getName() << " thanh cong !\n";
 }
 
 void Registar::regSinhVien(int student_index, int course_index) {
@@ -114,6 +125,16 @@ int Registar::isCourseInList(string name_input) {
 	return -1;
 }
 
+bool Registar::isStudentEmpty()
+{
+	return (this->nStudents == 0);
+}
+
+bool Registar::isCourseEmpty()
+{
+	return (this->nCourses == 0);
+}
+
 void Registar::printSubCourse(int course_index) {
 	this->printSubCourse(this->courses[course_index]);
 }
@@ -122,9 +143,8 @@ void Registar::printStudentFromCourse(Courses& a) {
 	cout << a;
 }
 
-int Registar::countStudentsInACourse(string a) {
+int Registar::countStudentsInACourse(string courseName) {
 	int count = 0;
-	string courseName = a;
 	for (int i = 0; i < nStudents; i++) {
 		Schedule Sch = students[i].getSchedule();		// Thoi khoa bieu cua sinh vien i
 		string* temp = Sch.getCourses();		// Mang cac courses ma sinh vien i dang ki 
@@ -145,6 +165,12 @@ void Registar::updateSubCourseFromStudent(Student& student, Courses& course) {
 	cout << "Danh sach cac lop hoc trong lop " << course.getName() << ": \n";
 	cout << course;
 	
+	if (course.isCoursesEmpty())
+	{
+		cout << "Xin hay quay lai menu de them mot lop hoc cho khoa hoc ! \n";
+		return;
+	}
+
 	cout << "Xin moi nhap lop hoc ma ban muon thay doi: ";
 	string name_courseSub;
 	getline(cin, name_courseSub);
@@ -277,6 +303,11 @@ void Registar::printAllCourses() {
 		cout << this->courses->getName();
 		cout << endl;
 	}
+}
+
+int Registar::countCoursesFromStudent(Student& a)
+{
+	return a.getNumCourses();
 }
 
 void Registar::deleteCourse(int indexCourse) {

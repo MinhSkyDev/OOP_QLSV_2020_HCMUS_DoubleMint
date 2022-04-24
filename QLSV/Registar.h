@@ -38,6 +38,8 @@ public:
 	//Check
 	int isStudentInList(string name_input);
 	int isCourseInList(string name_input);
+	bool isStudentEmpty();
+	bool isCourseEmpty();
 	
 	//In cac SinhVien nao ma hoc course dau vao
 	void printStudentFromCourse(Courses& a);
@@ -46,12 +48,12 @@ public:
 	void printSubCourse(int course_index);
 
 
-
 	//Print all name Students
 	void printAllStudents();
 	//print all name Courses
 	void printAllCourses();
 
+	int countCoursesFromStudent(Student& a);
 
 
 };

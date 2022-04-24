@@ -30,6 +30,11 @@ Roster Courses::getRoster() {
 	return roster;
 }
 
+bool Courses::isCoursesEmpty()
+{
+	return (this->roster.isRosterEmpty());
+}
+
 void Courses::setName(const string& Name) {
 	name = Name;
 }

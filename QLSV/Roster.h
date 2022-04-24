@@ -23,7 +23,7 @@ public:
 	// Kiem tra xem mot hau to co thuoc mot khoa hoc hay khong
 	// Tra ve index cua hau to neu tim thay, -1 neu khong ton tai
 	int isCourseHaveRoster(const string& roster_find);
-
+	bool isRosterEmpty();
 
 	// CRUD
 	// Create: (add a new roster to the list)
