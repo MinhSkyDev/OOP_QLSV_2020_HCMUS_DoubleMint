@@ -15,7 +15,7 @@ public:
 	void setName(const string& Name);
 	void setRoster(Roster& r);
 	string getName();
-	Roster getRoster();		// tra ve roster
+	Roster& getRoster();		// tra ve roster
 	//Roster getRoster(int index);	// tra ve roster[index]
 
 	bool isCoursesEmpty();

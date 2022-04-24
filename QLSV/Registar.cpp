@@ -101,6 +101,29 @@ void Registar::delCoursesFromStudent(Student& student, string del) {
 	}
 }
 
+void Registar::delCoursesFromStudent(Courses& course)
+{
+	string course_name = course.getName();
+	int numStudents = this->nStudents;
+	Roster Ros = course.getRoster();
+	string* temp = Ros.getList();
+	int numCourses = Ros.getQuantity();
+	//Voi moi hoc sinh
+	for (int i = 0; i < numStudents; i++)
+	{
+		//So sanh voi moi lop con trong khoa hoc
+		for (int j = 0; j < numCourses; j++)
+		{
+			string course_name_full = course_name + "_" + temp[j];
+			if (students[i].isHaveCourse(course_name_full))
+			{
+				students[i].deleteCourse(course_name_full);
+			}
+		}
+
+	}
+}
+
 
 
 void Registar::printSubCourse(Courses& a) {
@@ -207,7 +230,7 @@ void Registar::addSubCourseIntoCourse(Courses& course) {
 
 	//Neu co roi thi them vo
 	course.addRoster(input_name);
-	cout << "Da them lop " << course.getName() << "_" << input_name << "vao danh sach !";
+	cout << "Da them lop " << course.getName() << "_" << input_name << " vao danh sach !\n";
 }
 
 void Registar::updateSubCourseFormCourse(Courses& course) {
@@ -237,6 +260,17 @@ void Registar::updateSubCourseFormCourse(Courses& course) {
 	}
 		
 	course.updateRoster(course_src, course_dst);
+
+	string course_src_full = course.getName() + "_" + course_src;
+	string course_dst_full = course.getName() + "_" + course_dst;
+	//Doi ten tat ca cac sinh vien co lop src thanh dst
+	for (int i = 0; i < nStudents; i++)
+	{
+		if (students[i].isHaveCourse(course_src_full)) {
+			students[i].updateCourse(course_src_full, course_dst_full);
+		}
+	}
+
 	cout << "Da hoan thanh viec doi ten lop !\n";
 }
 
@@ -300,7 +334,7 @@ void Registar::printAllCourses() {
 	cout << "Danh sach cac khoa hoc: \n";
 	for (int i = 0; i < this->nCourses; i++)
 	{
-		cout << this->courses->getName();
+		cout << courses[i].getName();
 		cout << endl;
 	}
 }
@@ -346,3 +380,24 @@ void Registar::deleteStudent(int indexStudent) {
 	nStudents--;
 
 }
+
+void Registar::printAllStudentsData() {
+	int numStudents = this->nStudents;
+	
+	//Go through every student
+	for (int i = 0; i < numStudents; i++) {
+		cout << "--------------Sinh vien thu " << i + 1 << " --------------\n";
+		cout << students[i];
+	}
+}
+
+void Registar::printAllCoursesData() {
+	int numCourses = this->nCourses;
+	
+	for (int i = 0; i < numCourses; i++)
+	{
+		cout << "--------------Khoa hoc thu " << i + 1 << " --------------\n";
+		cout << courses[i];
+	}
+}
+

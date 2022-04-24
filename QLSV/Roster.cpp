@@ -31,6 +31,16 @@ void Roster::operator=(Roster& r) {
 		roster[i] = r.roster[i];
 }
 
+string* Roster::getList()
+{
+	return roster;
+}
+
+int Roster::getQuantity()
+{
+	return numOfCourses;
+}
+
 // Y tuong giong nhu o ben class Schedule, khi kiem tra mot hau to co nam trong khoa hoc
 // hay khong, ta kiem tra no voi mot mang phu la cac tien to duoc ghi in hoa het, cac tu
 // cach nhau boi 1 dau cach, dam bao cho viec tim kiem chinh xac

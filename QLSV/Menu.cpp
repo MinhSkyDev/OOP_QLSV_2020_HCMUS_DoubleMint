@@ -24,6 +24,8 @@ void Menu::init() {
 		cout << "Chon 7 de huy dang ky mot mon hoc cho Sinh Vien \n";
 		cout << "Chon 8 de xoa mot Sinh Vien ra khoi chuong trinh \n";
 		cout << "Chon 9 de xoa mot Khoa Hoc ra khoi chuong trinh \n";
+		cout << "Chon 10 de hien thi toan bo thong tin cua Sinh Vien trong chuong trinh \n";
+		cout << "Chon 11 de hien thi toan bo thong tin ve khoa hoc trong chuong trinh \n";
 		cout << "Chon 0 de thoat khoi chuong trinh \n";
 
 		cout << endl << endl;
@@ -335,9 +337,29 @@ void Menu::init() {
 				getline(cin, name_Course);
 				indexCourse = moodle.isCourseInList(name_Course);
 			}
-
+			moodle.delCoursesFromStudent(moodle.getCourseIndex(indexCourse));
 			moodle.deleteCourse(indexCourse);
 			cout << "Da xoa khoa hoc khoi danh sach ! \n";
+			system("pause");
+		}
+		else if(selection == 10){
+			system("cls");
+			if (moodle.isStudentEmpty()) {
+				cout << "Khong co sinh vien nao trong chuong trinh !\n";
+			}
+			else {
+				moodle.printAllStudentsData();
+			}
+			system("pause");
+		}
+		else if (selection == 11) {
+			system("cls");
+			if (moodle.isCourseEmpty()) {
+				cout << "Khong co khoa hoc nao trong chuong trinh !\n";
+			}
+			else {
+				moodle.printAllCoursesData();
+			}
 			system("pause");
 		}
 		else if (selection == 0)

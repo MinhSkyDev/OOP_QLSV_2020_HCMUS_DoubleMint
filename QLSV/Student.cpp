@@ -68,7 +68,7 @@ int Student::getNumCourses()
 
 ostream& operator<<(ostream& out, Student& a)
 {
-	out << "Ten cua sinh vien la: " << a.name;
+	out << "Ten cua sinh vien: " << a.name << endl;
 	out << a.schedule;
 	return out;
 }

@@ -26,7 +26,7 @@ string Courses::getName() {
 	return name;
 }
 
-Roster Courses::getRoster() {
+Roster& Courses::getRoster() {
 	return roster;
 }
 

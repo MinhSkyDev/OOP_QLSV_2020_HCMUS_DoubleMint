@@ -124,8 +124,13 @@ int Schedule::getQuantity()
 }
 
 ostream& operator<<(ostream& out, Schedule& a) {
-	out << "\nDanh sach cac khoa hoc ma sinh vien nay tham gia la: \n";
-	for (int i = 0; i < a.quantity; i++)
-		out << "Khoa hoc thu " << i + 1 << " :" << a.courses[i] << endl;
+	if (a.quantity == 0) {
+		out << "Sinh vien nay khong tham gia bat ky khoa hoc nao !\n";
+	}
+	else {
+		out << "\nDanh sach cac khoa hoc ma sinh vien nay tham gia la: \n";
+		for (int i = 0; i < a.quantity; i++)
+			out << "Khoa hoc thu " << i + 1 << " :" << a.courses[i] << endl;
+	}
 	return out;
 }
